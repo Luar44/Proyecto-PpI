@@ -1,0 +1,18 @@
+#background{
+    position: relative;
+    background-color: #07233b;
+    padding: 50%;
+    margin: 0;
+ 
+}
+#header{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 20%;
+    color: #F2CB05;
+    -webkit-text-stroke: 4px #8C6A03;
+    font-size: 30px;
+}
