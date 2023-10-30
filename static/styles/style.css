@@ -1,0 +1,54 @@
+.llenado input.error{
+    border: 1px solid red;
+}
+
+.llenado input[type=text], .llenado input[type=email], .llenado input[type=number], .llenado input[type=tel], llenado input[type=date]{
+    width: 40%;
+    padding: 8px 10px;
+    border: 2px solid gray;
+    border-radius: 4px;
+}
+
+.llenado input:focus{
+    border: 3px solid black;
+    background-color: lightgray;
+}
+
+.llenado input[type=submit]{
+    background-color: lightgray;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 4px 2px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.llenado input[type="date"]::-webkit-clear-button {
+    display: none;
+}
+
+.llenado input[type="date"]::-webkit-inner-spin-button {
+    display: none;
+}
+
+.llenado input[type="date"]::-webkit-calendar-picker-indicator {
+    color: lightgray;
+}
+
+.llenado input[type="date"] {
+    appearance: none;
+    -webkit-appearance: none;
+    font-size: 18px;
+    padding:5px;
+    display: inline-block !important;
+    visibility: visible !important;
+}
+
+.llenado input[type="date"], focus {
+    color: darkgray;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}

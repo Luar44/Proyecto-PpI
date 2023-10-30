@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registo de clientes</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <h1>Registro de clientes</h1>
+    <form class="llenado" onsubmit="return clientRegister();">
+        <br><label for="in_name">Nombre<br></label><input type="text" id="in_name" placeholder="Jose Jose Perez" pattern="[A-Za-z\s]+" title="Solo letras y/o espacios" name="name"><br>
+        <br><label for="in_code">Codigo<br></label><input type="number" id="in_code" placeholder="222361799" name="code"><br>
+        <br><label for="in_phone">Telefono<br></label><input type="tel" id="in_phone" placeholder="00-0000-0000" pattern="[0-9]{2}-[0-9]{4}-[0-9]{4}" title="XX-XXXX-XXXX" name="phone"><br>
+        <br><label for="in_dir">Direccion<br></label><input type="text" id="in_dir" placeholder="Calle 001" name="dir"><br>
+        <br><label for="in_date">Fecha<br></label><input type="date" id="in_date" name="date"><br>
+        <br><input type="submit" value="Registrar">
+    </form>
+</body>
+<script>
+    const today = new Date();
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    document.getElementById("in_date").setAttribute("min", formattedDate);
+
+    function clientRegister(){
+        console.log(new Date());
+        let name=document.getElementById("in_name").value;
+        let code=document.getElementById("in_code").value;
+        let phone=document.getElementById("in_phone").value;
+        let dir=document.getElementById("in_dir").value;
+        let date=document.getElementById("in_date").value;
+
+        if (name === "" || code === "" || phone === "" || dir === "" || date === "") {
+            alert("Por favor, complete todos los campos del formulario.");
+            return false;
+        }
+
+        const url='http://localhost:8080/client';
+
+        const clientData={
+            name: name,
+            code: code,
+            phone: phone,
+            dir: dir,
+            date: date,
+        }
+
+        const requestOptions={
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json',
+            },
+            body: JSON.stringify(clientData),
+        }
+
+        fetch(url, requestOptions)
+            .then((response)=>{
+                if(response.ok){
+                    return response.json();
+                }else{
+                    throw new Error('Error de registro');
+                }
+            })
+            .then((data)=>{
+                console.log('Cliente registrado con exito', data);
+            })
+            .catch((error)=>{
+                console.error('Error en el registro :(', error);
+            })
+    }
+
+    function showError(inputId){
+        document.getElementById(inputId).classList.add('error');
+    }
+</script>
+</html>
